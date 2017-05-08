@@ -26,16 +26,12 @@ def handle_message():
                 if messaging_event.get("message"):
                     sender_id = messaging_event["sender"]["id"]
                     recipient_id = messaging_event["recipient"]["id"]
-                    message_text = ""
-                    if messaging_event["message"]["text"]:
+                    message_text = "I don't understand u."
+                    if "text" in messaging_event["message"]:
                         message_text = messaging_event["message"]["text"]
-                    messagel = message_text.tolower()
-
-                    if messagel== "hi" or messagel == "hello":
-                        send_message(sender_id, "Halo,. How can I help you ?")
-                    else:
                         send_message(sender_id, message_text)
-
+                        
+                    send_message(sender_id, message_text)
                 if messaging_event.get("delivery"):
                     pass
 
@@ -62,7 +58,7 @@ def send_message(recipient_id, message_text):
         },
         "message": {
             "text": message_text
-        },
+        }
         "quick_reply": {
             "payload":"DEVELOPER_DEFINED_PAYLOAD"
         }
