@@ -68,29 +68,6 @@ def send_message(recipient_id, message_text):
         log(r.status_code)
     log(r.text)
 
-@app.route('/jsonx')
-def jsonx():
-    jsond = """{
-  "sender":{
-    "id":"USER_ID"
-  },
-  "recipient":{
-    "id":"PAGE_ID"
-  },
-  "timestamp":1458692752478,
-  "message":{
-    "mid":"mid.1457764197618:41d102a3e1ae206a38",
-    "text":"hello, world!",
-    "quick_reply": {
-      "payload": "DEVELOPER_DEFINED_PAYLOAD"
-    }
-  }
-}"""
-    data = json.loads(jsond)
-    if "text" in data["message"]:
-        print "no text"
-    return "ok"
-
 def log(message):  # simple wrapper for logging to stdout on heroku
     print str(message)
     sys.stdout.flush()
