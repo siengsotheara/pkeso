@@ -21,21 +21,23 @@ def handle_message():
     log(data)
 
     if data["object"] == "page":
-
         for entry in data["entry"]:
             for messaging_event in entry["messaging"]:
-
                 if messaging_event.get("message"):
                     sender_id = messaging_event["sender"]["id"]
                     recipient_id = messaging_event["recipient"]["id"]
                     message_text = messaging_event["message"]["text"]
 
-                    send_message(sender_id, message_text)
+                    messagel = message_text.tolower()
+                    if messagel== "hi" or messagel == "hello":
+                        send_message(sender_id, "Halo,. How can I help you ?")
+                    else:
+                        send_message(sender_id, message_text)
 
                 if messaging_event.get("delivery"):
                     pass
 
-                if messaging_event.get("optin"):
+                if messaging_event.get("option"):
                     pass
 
                 if messaging_event.get("postback"):
