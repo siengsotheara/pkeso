@@ -6,7 +6,7 @@ app = Flask(__name__)
 def index():
 	return '<h1>Flask going to be deployed.</h1>'
 	
-@app.route('/logoin')
+@app.route('/login')
 def login():
 	return 'this is login page.'
 
