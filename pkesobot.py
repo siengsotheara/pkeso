@@ -26,11 +26,11 @@ def handle_message():
                 if messaging_event.get("message"):
                     sender_id = messaging_event["sender"]["id"]
                     recipient_id = messaging_event["recipient"]["id"]
-                    message_text = "I don't understand u."
+                    message_text = "Sorry, I cannot read your message let' me think a moment please"
                     if "text" in messaging_event["message"]:
                         message_text = messaging_event["message"]["text"]
                         send_message(sender_id, message_text)
-                        
+
                     send_message(sender_id, message_text)
                 if messaging_event.get("delivery"):
                     pass
@@ -58,7 +58,7 @@ def send_message(recipient_id, message_text):
         },
         "message": {
             "text": message_text
-        }
+        },
         "quick_reply": {
             "payload":"DEVELOPER_DEFINED_PAYLOAD"
         }
@@ -68,6 +68,28 @@ def send_message(recipient_id, message_text):
         log(r.status_code)
     log(r.text)
 
+@app.route('/jsonx')
+def jsonx():
+    jsond = """{
+  "sender":{
+    "id":"USER_ID"
+  },
+  "recipient":{
+    "id":"PAGE_ID"
+  },
+  "timestamp":1458692752478,
+  "message":{
+    "mid":"mid.1457764197618:41d102a3e1ae206a38",
+    "text":"hello, world!",
+    "quick_reply": {
+      "payload": "DEVELOPER_DEFINED_PAYLOAD"
+    }
+  }
+}"""
+    data = json.loads(jsond)
+    if "text" in data["message"]:
+        print "no text"
+    return "ok"
 
 def log(message):  # simple wrapper for logging to stdout on heroku
     print str(message)
