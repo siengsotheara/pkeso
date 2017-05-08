@@ -29,9 +29,9 @@ def handle_message():
                     message_text = "Sorry, I cannot read your message let' me think a moment please"
                     if "text" in messaging_event["message"]:
                         message_text = messaging_event["message"]["text"]
+                        send_message(sender_id, message_text.encode('ascii', 'ignore').decode('ascii')
+                    else:
                         send_message(sender_id, message_text)
-
-                    send_message(sender_id, message_text)
                 if messaging_event.get("delivery"):
                     pass
 
