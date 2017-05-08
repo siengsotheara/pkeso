@@ -8,7 +8,7 @@ def index():
 	
 @app.route('/login')
 def login():
-	return 'this is login page.'
+	return '<h3>this is login page.</h3>'
 
 if __name__ == '__main__':
 	app.run()
