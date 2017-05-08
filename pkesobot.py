@@ -29,7 +29,7 @@ def handle_message():
                     message_text = "Sorry, I cannot read your message let' me think a moment please"
                     if "text" in messaging_event["message"]:
                         message_text = messaging_event["message"]["text"]
-                        send_message(sender_id, message_text.encode('ascii', 'ignore').decode('ascii')
+                        send_message(sender_id, message_text.encode('ascii', 'ignore').decode('ascii'))
                     else:
                         send_message(sender_id, message_text)
                 if messaging_event.get("delivery"):
@@ -73,5 +73,5 @@ def log(message):  # simple wrapper for logging to stdout on heroku
     sys.stdout.flush()
 
 if __name__ == '__main__':
-	port = int(os.environ.get("PORT", 5000))
-	app.run(host='0.0.0.0', port=port)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
